@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem 'ri_cal'
+gem 'google_calendar'
 
 group :development do
   gem "rspec"
