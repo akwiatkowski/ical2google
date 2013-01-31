@@ -1,59 +1,9 @@
-= weather_fetcher
+= ical2google
 
-Fetch weather from various Polish websites and via other gems.
-
-== How to use
-
-It is very early gem. More feature coming soon. At this moment you can use 3 providers: Onet.pl,
-Wp.pl and Interia.pl.
-
-There is simple 'how to use' code below. _defs_ is Hash object with proper data. Refactoring is on
-the way, so read this file later.
-
-Please check spec/fetcher_spec.rb for code sample, and spec/fixtures/main.yml for parameters.
-
-= Definitions
-
-  - :name: 'Poznań'
-    :country: 'Poland'
-    :metar: 'EPPO'
-    :coords:
-      :lat: 52.411048,
-      :lon: 16.928329
-    :classes:
-      OnetPl:
-        :url: 'http://pogoda.onet.pl/0,198,38,poznan,miasto.html'
-      WpPl:
-        :url: 'http://pogoda.wp.pl/miasto,poznan,mid,1201201,mi.html'
-      InteriaPl:
-        :url: 'http://pogoda.interia.pl/miasta?id=11875'
-      WorldWeatherOnline:
-        :key: 'api key'
-
-= Fetching
-
-  result = WeatherFetcher::Fetcher.fetch(@defs)
-
-= Providers
-
-* Onet.pl
-* Wp.pl
-* Interia.pl
-* WorldWeatherOnline (free api key required)
-* and 4 metar providers
- 
-== Contributing to weather_fetcher
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+:)
 
 == Copyright
 
-Copyright (c) 2011 Aleksander Kwiatkowski. See LICENSE.txt for
+Copyright (c) 2011-2013 Aleksander Kwiatkowski. See LICENSE.txt for
 further details.
 
