@@ -12,28 +12,23 @@ module Ical2google
     end
 
     def initialize
-      cal = Google::Calendar.new(
+      #https://github.com/northworld/google_calendar/blob/master/lib/google/event.rb
+
+      @calendar = Google::Calendar.new(
         :username => @@username,
         :password => @@password
       )
       #:app_name => 'mycompany.com-googlecalendar-integration'
-
-      #event = cal.create_event do |e|
-      #  e.title = 'A Cool Event'
-      #  e.start_time = Time.now
-      #  e.end_time = Time.now + (60 * 60) # seconds * min
-      #end
-      #
-      #puts event
-      #
-      #event = cal.find_or_create_event_by_id(event.id) do |e|
-      #  e.title = 'An Updated Cool Event'
-      #  e.end_time = Time.now + (60 * 60 * 2) # seconds * min * hours
-      #end
-      #
-      #puts event
-
-      puts cal.events
     end
+
+    def import_event(params, id = Time.now.to_f.to_s + rand(2).to_s)
+      event = @calendar.find_or_create_event_by_id(id) do |e|
+        e.title = params[:title]
+        e.start_time = params[:start_time] if params[:start_time]
+        e.end_time = params[:end_time] if params[:end_time]
+        e.content = params[:content] if params[:content]
+      end
+    end
+
   end
 end

@@ -48,7 +48,7 @@ pkg
 #*.rbc
 
 .idea
-
-# api key, it is secret
-spec/fixtures/world_weather_api.rb
+spec/private_spec.rb
+spec/fixtures/std.ics
+spec/fixtures/google_credentials.yml
 TODO
