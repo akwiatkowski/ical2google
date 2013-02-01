@@ -1,4 +1,5 @@
 require 'google_calendar'
+require 'open-uri'
 
 module Ical2google
   class Googler
@@ -21,12 +22,31 @@ module Ical2google
       #:app_name => 'mycompany.com-googlecalendar-integration'
     end
 
-    def import_event(params, id = Time.now.to_f.to_s + rand(2).to_s)
-      event = @calendar.find_or_create_event_by_id(id) do |e|
+    def clear!
+      result = @calendar.events
+
+      if result.kind_of?(Array)
+        result.each do |event|
+          @calendar.delete_event(event)
+        end
+      elsif not result.nil?
+        @calendar.delete_event(result)
+      end
+    end
+
+    def import_event(params, id)
+      ## find by name
+      #title = URI::encode(params[:title])
+      #query = "?title=#{title}"
+      #result = @calendar.find_events(query)
+
+      event = @calendar.create_event do |e|
         e.title = params[:title]
-        e.start_time = params[:start_time] if params[:start_time]
-        e.end_time = params[:end_time] if params[:end_time]
+        e.where = params[:location] if params[:location]
+        e.start_time = params[:start_time].to_s if params[:start_time]
+        e.end_time = params[:end_time].to_s if params[:end_time]
         e.content = params[:content] if params[:content]
+        # e.all_day # TODO
       end
     end
 

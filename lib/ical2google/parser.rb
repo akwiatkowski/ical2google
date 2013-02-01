@@ -15,13 +15,11 @@ module Ical2google
 
     def initialize(file)
       calendars = RiCal.parse(open(file))
-      data = calendars.collect { |c| filter_calendar(c) }
+      @data = calendars.collect { |c| filter_calendar(c) }.flatten.first
+    end
 
-      calendars.save
-
-      puts data.to_yaml
-
-      # https://github.com/wtnabe/ical2gcal/blob/master/lib/ics/events.rb
+    def data
+      @data
     end
 
     def filter_calendar_sub_object(obj, keys)
